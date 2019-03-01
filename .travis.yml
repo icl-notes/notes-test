@@ -11,6 +11,7 @@ branches:
   - deploy
 
 env:
+# Carefull, also set it in the deploy section!
 - NOTES_FILE=test
 
 services:
@@ -24,6 +25,7 @@ deploy:
   provider: releases
   api_key:
     secure: LBSth3QkZDkukhzcO83EimBpkE7pk1Nl9/gwU4Ay4XSJvZ8YYPIm3IvGpRH9dZMFe9ngKjT0JwFuTJCH5TfERfSbF6p/0eS1Ai0+7nCi2yPXNpwGMnxqEglc1LsvZrPJsszf5hCQiCutEn/tJ+OcjMISopbhDHdbIEnqTr25JbfRfCmgRaA4Phvie/VQr5VC4jE8gxsdW5b0quf/2WSLdS1STMPodhxNAfPcdNcuIngt/f6diTp4OcTSWPdPU0vLYv3cJlDQRwELyz7kt6RUKoQKKwHIeK8+q6v/yFeiox2H/60T2SKaxpRcYd6HgJ7NyHJqUu1kYMhQ6Iq+PVBcUQRB1ycOy54uKPluO1cR0CTof+n5B1P7sbPmBz1GBgwRnAznCX1eOdCKIqBR/jkUo7AW58fydhydKhERwN0aEdJZoTL5oH285BM0hLJwqc/T2Ld58CLZowpP02uFsdzTIRhmz3q+hSW8ow5yNNrCJUk+YoTJh/uyqo2wRK8fQDVbnxTBfTP2lPuN7dh7PtqxSHiiMwCL/Q5u6WGDVqQefQhf9XhS1XDYbvh71IBF+kfoIfmTRQvgSPTU87nPZydpyA5qdPkbCx/uu6QIkab04AC/4GhauuYFfOSyn6M+Sm4dQmpXgC5dg+QbVA6HMxVmu7miAfDQ5Rr5KQtZiYjyhYs=
-  file: $NOTES_FILE.pdf
+  file: test.pdf
+  skip_cleanup: true
   on:
     repo: icl-notes/notes-test
