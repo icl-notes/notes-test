@@ -1,0 +1,29 @@
+dist: xenial
+language: minimal 
+
+git:
+  quiet: true
+  submodules: false
+
+branches:
+  only:
+  - master
+  - deploy
+
+env:
+  - FILE=test
+
+services:
+  - docker
+
+script:
+  - docker run --rm -v $(pwd):/notes blang/latex /bin/bash -c "cd /notes; ./build.sh $FILE" 
+  - ./test.sh $FILE
+
+#deploy:
+#  provider: releases
+#  api_key: "GITHUB OAUTH TOKEN"
+#  file: test.pdf
+#  skip_cleanup: true
+#  on:
+#    tags: false
