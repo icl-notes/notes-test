@@ -1,31 +1,24 @@
 dist: xenial
 language: minimal
-
 git:
   quiet: true
   submodules: false
-
 branches:
   only:
   - master
   - deploy
-
 env:
-# Carefull, also set it in the deploy section!
 - NOTES_FILE=test
-
 services:
 - docker
-
 script:
-- docker run --rm -v $(pwd):/notes blang/latex /bin/bash -c "cd /notes; ./build.sh $NOTES_FILE"
+- docker run --rm -v $(pwd):/notes blang/latex /bin/bash -c "cd /notes; ./build.sh
+  $NOTES_FILE"
 - "./test.sh $NOTES_FILE"
-
 deploy:
   provider: releases
   api_key:
-    secure: JkQ6HIf+urEbQnbMNiyqgqbtTuuqgCOjOzscpoc3bo1XeC6A65uB+43+wlV6YnKVosa5Ug+e6vV1Wtd5sMWyZyAewGsrdr378VJ46cMwziChwbrA6uBUG6vzWmNdF0qMTBQ2rPD3KRLeoYov0d7xt7+ND5S3WmKxXTZX6AUMZLoN/zNK3uwy8J/Ll6S0J9qIWB+1DQDPRe2XCvNrMyGHh9Kfc2ZiuLVxane5LIf/OJYHpjfrCFviiWLhEaQLyMYmnZDcyHgUMYqJamqhNJ5kqwr+X6Kd25WOGl8vACSFsTFECsF4p3DQkCoYX7IFXqhIpTeILmXxZT1hk2dTcnESRKpg0P+Xk+fQ7pi53jPhH+t1ePNOwU4UnE4F7XY0eOX+YfVRFzMGwVahVlU02IfG2G2xx4qY1JAgNeRpEJklIYOnlivIxiVrEFjfAj+VGF0j0CIGp9XjZvhC7pnBF3nY+zP7NENS2u90RlAP5k3hgr94HO9m8CLwAALBZDg1cRUIc256r+W3OD8663BNtDrgBoCf/5rY7J01zUZUAcJujjBadO1MSsGUDiLVHVwi1lYv+7IoEV6AXdZGXV2F4NtSRekTa8Oujact7siQybpmFwCT5xwlt7ehA6xWP3PFDVirnVEhXwnoDIp3SXUbkb2M2CSUMMSG4GB5ZMYb71jp9LU=
+    secure: D89eE63rlWKRUvJLdYN9NxeqlRWFrXZy8Y8hEA8fW7G/I05aQxSQo8sUiAXbqcfxH/QeZSaDDYg1wJ+3EPQLNr+GjAojtV1TCegR9IFFrZK8RjLNjXuoHkVBa+e8CDQj0zzQvopgsl0f2xj5nhQXgYyKrkHaQTkYth2IaqwCGQ7HK0ZDVLVpBx2pvObV3Uy6hMCO72K8vZ5AleF0wk/skK62BatqqeaulWHp7SOpnbzfaS1SQ6goYSGDck7JV3RTjrg33Z5Kh7R3+NnTjN5Pkpavq5ybRPR9cXX8GMSp1KobqFKABuNUJGG2TR4YyZPNql1B71GOrmhWwxpZO9yKOu6M0bS2C13Pw6r09sjUEA+GFHIzcygMlrXZrFW4UpWxBXdvPdQ+jKy1CTyTvH4+2JNUG1NhDhOTT/MJATABhMFRuaJV5/6T5pO+eyuMg4z2qgxEzgLxC1dDc3GX5/OOsHmUi9SN8/jXyl/nqfgw5h61WDGKp9dnvi2nMVvoQF8nLVEzBgDvIEzrdgEyTuyafXw4uwX/vlKqwXPqpht58wcvZZrrAwT/nC+SxmWvUOQlydYkKjlvqOZ8gJFPKbZtMgCiw4umLQT2sPW6ED84pjPH3UD0PJN0HGz85XHqw4LNEB+Ptluxka50vYUBhJ0Z4byMuopKbCPIUl2RYPmYR0Q=
   file: test.pdf
-  skip_cleanup: true
   on:
     repo: icl-notes/notes-test
